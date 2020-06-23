@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.annotation.PostConstruct;
 
+import org.eclipse.jgit.api.Git;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,8 +26,13 @@ public class VfsApplication {
 	@PostConstruct
 	private void init() {
 		File repodir = new File(repodirpath);
-		GitManager gm = new GitManager();
-		gm.initGitDir(repodir);
-		logger.debug("Application loaded.");
+		if (!repodir.exists()) {
+			GitManager gm = new GitManager();
+			Git git = gm.initGitDir(repodir);
+			gm.commitDescription(git);
+			logger.debug("Git directory {} created.", repodir);
+		} else {
+			logger.debug("Repository directory {} already exists.", repodir);
+		}
 	}
 }
