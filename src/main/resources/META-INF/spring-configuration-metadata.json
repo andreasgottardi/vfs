@@ -1,0 +1,9 @@
+{
+	"properties": [
+		{
+			"name": "at.goasystems.vfs.repodirpath",
+			"type": "java.lang.String",
+			"description": "Path to the repository directory."
+		}
+	]
+}

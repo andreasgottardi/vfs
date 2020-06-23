@@ -29,7 +29,8 @@ public class VfsApplication {
 		if (!repodir.exists()) {
 			GitManager gm = new GitManager();
 			Git git = gm.initGitDir(repodir);
-			gm.commitDescription(git);
+			gm.initDescription(git, "readme.txt", "This is the working directory containing all resources.",
+					"Master branch with readme initialized.");
 			logger.debug("Git directory {} created.", repodir);
 		} else {
 			logger.debug("Repository directory {} already exists.", repodir);

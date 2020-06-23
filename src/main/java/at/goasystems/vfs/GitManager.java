@@ -18,6 +18,12 @@ class GitManager {
 
 	private static final Logger logger = LoggerFactory.getLogger(GitManager.class);
 
+	/**
+	 * Initializes the repository.
+	 * 
+	 * @param gitdir Directory where to initialize the repository.
+	 * @return Repository reference or null in case of error
+	 */
 	public Git initGitDir(File gitdir) {
 		Git git = null;
 		if (!gitdir.exists()) {
@@ -42,14 +48,26 @@ class GitManager {
 		return git;
 	}
 
-	public void commitDescription(Git git) {
+	/**
+	 * Initializes the description file only fi the file does not already exist.
+	 * 
+	 * @param git         The repository
+	 * @param filename    The filename
+	 * @param description The content
+	 */
+	public void initDescription(Git git, String filename, String description, String commitmessage) {
 		File workingtree = git.getRepository().getDirectory().getParentFile();
-		try (FileOutputStream fos = new FileOutputStream(new File(workingtree, "readme.txt"))) {
-			fos.write("This is the working directory containing all resources.".getBytes(StandardCharsets.UTF_8));
-			git.add().addFilepattern("readme.txt").call();
-			git.commit().setMessage("Master branch with readme initialized.").call();
-		} catch (IOException | GitAPIException e) {
-			logger.error("Error commiting description.", e);
+		File descriptionfile = new File(workingtree, filename);
+		if (!descriptionfile.exists()) {
+			try (FileOutputStream fos = new FileOutputStream(descriptionfile)) {
+				fos.write(description.getBytes(StandardCharsets.UTF_8));
+				git.add().addFilepattern("readme.txt").call();
+				git.commit().setMessage(commitmessage).call();
+			} catch (IOException | GitAPIException e) {
+				logger.error("Error commiting description.", e);
+			}
+		} else {
+			logger.error("File {} does already exist. Will not overwrite it.", descriptionfile.getAbsolutePath());
 		}
 	}
 
