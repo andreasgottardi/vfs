@@ -4,6 +4,10 @@
 			"name": "at.goasystems.vfs.repodirpath",
 			"type": "java.lang.String",
 			"description": "Path to the repository directory."
+		},{
+			"name": "at.goasystems.vfs.langdef",
+			"type": "java.lang.String",
+			"description": "Path to the language definition file."
 		}
 	]
 }

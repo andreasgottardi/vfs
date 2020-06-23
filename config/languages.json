@@ -1,0 +1,21 @@
+[
+	{
+		"isocode": "en_US"
+	},
+	{
+		"isocode": "de_AT",
+		"fallback": "en_US"
+	},
+	{
+		"isocode": "es_ES",
+		"fallback": "en_US"
+	},
+	{
+		"isocode": "it_IT",
+		"fallback": "en_US"
+	},
+	{
+		"isocode": "fr_FR",
+		"fallback": "en_US"
+	}
+]

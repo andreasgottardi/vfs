@@ -17,6 +17,9 @@ apply from: 'https://dev.goa.systems/logging.gradle'
 /* This file enables Git support. */
 apply from: 'https://dev.goa.systems/git.gradle'
 
+/* This file enables Gson support. */
+apply from: 'https://dev.goa.systems/gson.gradle'
+
 repositories {
 	mavenCentral()
 }
