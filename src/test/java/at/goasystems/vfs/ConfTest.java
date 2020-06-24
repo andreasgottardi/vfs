@@ -12,7 +12,7 @@ class ConfTest {
 
 	@Test
 	void testConf() {
-		String langdeffile = System.getProperty("language.definition.file");
+		String langdeffile = System.getProperty("at.goasystems.vfs.langdef");
 		assertNotNull(langdeffile);
 		logger.debug("Configuration: {}", langdeffile);
 	}
