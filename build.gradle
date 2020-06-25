@@ -36,6 +36,9 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+	
+	/* All system properties used in JUnit tests should be either defined here
+	or be forwarded, if configuration via command line is neccessary. */
 	systemProperty "at.goasystems.vfs.langdef", 'config/languages.json'
 }
 
