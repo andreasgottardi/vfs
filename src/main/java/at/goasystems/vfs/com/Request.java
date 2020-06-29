@@ -1,7 +1,5 @@
 package at.goasystems.vfs.com;
 
-import org.springframework.boot.origin.Origin;
-
 public class Request {
 
 	private String id;

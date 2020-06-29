@@ -71,8 +71,14 @@ class GitManager {
 		}
 	}
 
-	public boolean removeDir(File gitdir) {
-		try (Stream<Path> stream = Files.walk(gitdir.getParentFile().toPath())) {
+	/**
+	 * Removes a directory recursively.
+	 * 
+	 * @param directory
+	 * @return true if successful. Else false.
+	 */
+	public boolean removeDir(File directory) {
+		try (Stream<Path> stream = Files.walk(directory.getParentFile().toPath())) {
 			stream.sorted(Comparator.reverseOrder()).map(Path::toFile).forEach(File::delete);
 			return true;
 		} catch (IOException e) {

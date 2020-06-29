@@ -1,0 +1,23 @@
+{
+	"id": "id1",
+	"metadata": {
+		"originmimetype": "image/xcf",
+		"originextension": "xcf",
+		"resourcemimetype": "image/png",
+		"resourceextension": "png",
+		"locked": false
+	},
+	"origin": {
+		"uri": "testdata/origin.xcf"
+	},
+	"localizedfiles": [
+		{
+			"isocode": "en_US",
+			"uri": "testdata/en.png"
+		},
+		{
+			"isocode": "de_AT",
+			"uri": "testdata/de.png"
+		}
+	]
+}

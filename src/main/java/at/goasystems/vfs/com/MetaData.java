@@ -6,6 +6,7 @@ public class MetaData {
 	private String originextension;
 	private String resourcemimetype;
 	private String resourceextension;
+	private boolean locked;
 
 	public String getOriginmimetype() {
 		return originmimetype;
@@ -37,5 +38,13 @@ public class MetaData {
 
 	public void setResourceextension(String resourceextension) {
 		this.resourceextension = resourceextension;
+	}
+
+	public boolean isLocked() {
+		return locked;
+	}
+
+	public void setLocked(boolean locked) {
+		this.locked = locked;
 	}
 }
