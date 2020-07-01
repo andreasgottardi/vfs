@@ -3,6 +3,7 @@ package at.goasystems.vfs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,9 +18,10 @@ public class ManagementController {
 		return "";
 	}
 
-	@GetMapping(value = "/read")
-	public String read() {
+	@GetMapping(value = "/read/{key}/{lang}")
+	public String read(@PathVariable("key") String key, @PathVariable("lang") String lang) {
 		logger.debug("Read endpoint called.");
+		logger.debug("Key: {}, Lang: {}", key, lang);
 		return "";
 	}
 
