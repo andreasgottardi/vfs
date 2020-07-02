@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -13,8 +14,9 @@ public class ManagementController {
 	private static Logger logger = LoggerFactory.getLogger(ManagementController.class);
 
 	@PostMapping(value = "/create")
-	public String create() {
+	public String create(@RequestBody String request) {
 		logger.debug("Create endpoint called.");
+		logger.debug("Create body received: {}", request);
 		return "";
 	}
 
@@ -26,14 +28,16 @@ public class ManagementController {
 	}
 
 	@PostMapping(value = "/update")
-	public String update() {
+	public String update(@RequestBody String request) {
 		logger.debug("Update endpoint called.");
+		logger.debug("Update body received: {}", request);
 		return "";
 	}
 
 	@PostMapping(value = "/delete")
-	public String delete() {
+	public String delete(@RequestBody String request) {
 		logger.debug("Delete endpoint called.");
+		logger.debug("Delete body received: {}", request);
 		return "";
 	}
 }
