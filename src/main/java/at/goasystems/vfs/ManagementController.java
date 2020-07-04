@@ -8,15 +8,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import at.goasystems.vfs.com.Request;
+
 @RestController
 public class ManagementController {
 
 	private static Logger logger = LoggerFactory.getLogger(ManagementController.class);
 
 	@PostMapping(value = "/create")
-	public String create(@RequestBody String request) {
+	public String create(@RequestBody String body) {
 		logger.debug("Create endpoint called.");
-		logger.debug("Create body received: {}", request);
+		logger.debug("Create body received: {}", body);
+		Request request = GsonFactory.getGson().fromJson(body, Request.class);
+		Controller c = new Controller();
+		c.createResource(request);
 		return "";
 	}
 
