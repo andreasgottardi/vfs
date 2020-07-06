@@ -2,6 +2,8 @@ package at.goasystems.vfs;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,13 +17,21 @@ public class ManagementController {
 
 	private static Logger logger = LoggerFactory.getLogger(ManagementController.class);
 
-	@PostMapping(value = "/create")
+	@Autowired
+	Controller controller;
+
+	@PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String create(@RequestBody String body) {
+
 		logger.debug("Create endpoint called.");
 		logger.debug("Create body received: {}", body);
+
 		Request request = GsonFactory.getGson().fromJson(body, Request.class);
-		Controller c = new Controller();
-		c.createResource(request);
+
+		if (controller.evaluateCreateRequest(request)) {
+			controller.createResource(request);
+		}
+
 		return "";
 	}
 
