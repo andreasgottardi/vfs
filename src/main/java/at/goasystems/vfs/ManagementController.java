@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.gson.Gson;
+
 import at.goasystems.vfs.com.Request;
+import at.goasystems.vfs.com.Response;
 
 @RestController
 public class ManagementController {
@@ -22,17 +25,15 @@ public class ManagementController {
 
 	@PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
 	public String create(@RequestBody String body) {
-
 		logger.debug("Create endpoint called.");
 		logger.debug("Create body received: {}", body);
-
-		Request request = GsonFactory.getGson().fromJson(body, Request.class);
-
-		if (controller.evaluateCreateRequest(request)) {
+		Gson gson = GsonFactory.getGson();
+		Request request = gson.fromJson(body, Request.class);
+		Response response = controller.evaluateCreateRequest(request);
+		if (!response.hasErrors()) {
 			controller.createResource(request);
 		}
-
-		return "";
+		return gson.toJson(response);
 	}
 
 	@GetMapping(value = "/read/{key}/{lang}")

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import at.goasystems.vfs.com.Request;
+import at.goasystems.vfs.com.Response;
 
 @Component
 public class Controller {
@@ -21,8 +22,12 @@ public class Controller {
 		logger.debug("Creation of resource {} requested.", request.getId());
 	}
 
-	public boolean evaluateCreateRequest(Request request) {
+	public Response evaluateCreateRequest(Request request) {
+		Response response = new Response();
 		File resourcedir = new File(repodirpath, request.getId());
-		return !resourcedir.exists();
+		if (resourcedir.exists()) {
+			response.addError("Directory already exists.");
+		}
+		return response;
 	}
 }
