@@ -1,6 +1,6 @@
 package at.goasystems.vfs;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
